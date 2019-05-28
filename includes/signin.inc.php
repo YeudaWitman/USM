@@ -20,7 +20,7 @@
                 } else {
                     session_start();
                     $userData->setLoggedin($checkedUser);
-                    $_SESSION['user'] = $checkedUser;
+                    $_SESSION['user'] = $email;
                     header("Location: ../");
                     exit();
                 }

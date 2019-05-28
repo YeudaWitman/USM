@@ -23,10 +23,6 @@
       <button type="submit" name="logout" class="btn btn-secondary">Log out</button>
     </form>
   </nav>
-<?php 
-
-  // var_dump($_SESSION);
-?>
   <table class="table">
       <thead class="thead-dark">
           <tr>

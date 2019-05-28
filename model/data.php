@@ -5,16 +5,13 @@ class Users
     private $usernames;
     private $data;
     private $json_arr;
+    private $dataURL = __DIR__.'./users.json';
     
     function __construct() {
-        $this->data = file_get_contents(__DIR__.'./users.json');
+        date_default_timezone_set("Asia/Tel_Aviv"); 
+        $this->data = file_get_contents($this->dataURL);
         $this->json_arr = json_decode($this->data, true);
         $this->usernames = array();
-        // $this->usernames = array(
-        //     array('userName' => 'moshe', 'connectionTime' => 'aaa', 'lastUpdate' => date("h:i:sa"), 'IP' => '1.0.0.127', 'connected' => false), 
-        //     array('userName' => 'david', 'connectionTime' => 'bbb', 'lastUpdate' => date("h:i:sa"), 'IP' => '135.156.156.555', 'connected' => true), 
-        //     array('userName' => 'john', 'connectionTime' => 'ccc', 'lastUpdate' => date("h:i:sa"), 'IP' => '651.46.752.425', 'connected' => true)
-        // );
     }
 
     public function getData() {
@@ -34,7 +31,7 @@ class Users
             "IP" => '123'
         );
         array_push($this->json_arr,  $user);
-        file_put_contents(__DIR__.'./users.json', json_encode($this->json_arr));
+        file_put_contents($this->dataURL, json_encode($this->json_arr));
     }
 
     public function getUserByEmail($email) {
@@ -52,18 +49,19 @@ class Users
     }
 
     public function setLoggedin($user) {
+        
         $now = date("m/d/y H:i:s");
         $userIndex = array_search($user, $this->json_arr);
         $this->json_arr[$userIndex]["connectionTime"] = $now;
         $this->json_arr[$userIndex]["connected"] = true;
-        file_put_contents(__DIR__.'./users.json', json_encode($this->json_arr));
+        file_put_contents($this->dataURL, json_encode($this->json_arr));
     }
 
     public function setLoggedOut($userMail) {
         $user = $this->getUserByEmail($userMail);
         $userIndex = array_search($user, $this->json_arr);
         $this->json_arr[$userIndex]["connected"] = false;
-        file_put_contents(__DIR__.'./users.json', json_encode($this->json_arr));
+        file_put_contents($this->dataURL, json_encode($this->json_arr));
     }
 
 }

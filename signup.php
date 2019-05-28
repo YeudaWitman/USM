@@ -23,7 +23,7 @@
       <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
       <button class="btn btn-lg btn-primary btn-block" name="submit" type="submit">Signup</button>
       <div>Already registered? <a href="./signin.php">sign in</a></div>
-      <p class="mt-5 mb-3 text-muted">&copy; 2017-2019</p>
+      <p class="mt-5 mb-3 text-muted">&copy; 2019</p>
     </form>
   </body>
 </html>

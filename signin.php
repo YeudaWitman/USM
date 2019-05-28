@@ -28,7 +28,7 @@
       </div>
       <button class="btn btn-lg btn-primary btn-block" name="submit" type="submit">Sign in</button>
       <div>Not a member yet? <a href="./signup.php">Register now</a></div>
-      <p class="mt-5 mb-3 text-muted">&copy; 2017-2019</p>
+      <p class="mt-5 mb-3 text-muted">&copy; 2019</p>
     </form>
   </body>
 </html>
