@@ -19,8 +19,8 @@
                     exit();
                 } else {
                     session_start();
-                    $userData->setLogginTime($checkedUser);
-                    $_SESSION['user'] = $email;
+                    $userData->setLoggedin($checkedUser);
+                    $_SESSION['user'] = $checkedUser;
                     header("Location: ../");
                     exit();
                 }

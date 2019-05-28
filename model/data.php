@@ -34,14 +34,16 @@ class Users
             "IP" => '123'
         );
         array_push($this->json_arr,  $user);
-        file_put_contents('../model/users.json', json_encode($this->json_arr));
+        file_put_contents(__DIR__.'./users.json', json_encode($this->json_arr));
     }
 
     public function getUserByEmail($email) {
+        // echo $email;
         $filteredUser;
         foreach ($this->json_arr as $value) {
             if( $value['email'] === $email ) {
                 $filteredUser = $value;
+                break;
             } else {
                 $filteredUser = false;
             }
@@ -49,11 +51,19 @@ class Users
         return $filteredUser;
     }
 
-    public function setLogginTime($user) {
+    public function setLoggedin($user) {
         $now = date("m/d/y H:i:s");
         $userIndex = array_search($user, $this->json_arr);
         $this->json_arr[$userIndex]["connectionTime"] = $now;
-        file_put_contents('../model/users.json', json_encode($this->json_arr));
+        $this->json_arr[$userIndex]["connected"] = true;
+        file_put_contents(__DIR__.'./users.json', json_encode($this->json_arr));
+    }
+
+    public function setLoggedOut($userMail) {
+        $user = $this->getUserByEmail($userMail);
+        $userIndex = array_search($user, $this->json_arr);
+        $this->json_arr[$userIndex]["connected"] = false;
+        file_put_contents(__DIR__.'./users.json', json_encode($this->json_arr));
     }
 
 }
