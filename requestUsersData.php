@@ -1,13 +1,16 @@
 <?php
-include_once('./model/Users.php');
 
-$data = file_get_contents('./model/users.json');
+if ( isset($_SESSION['user']) ) {
 
-$json_arr = json_decode($data, true);
-// echo $data;
+    include_once('./model/Users.php');
+    $data = new Users();
+    $output = $data->getUser();
 
-// var_dump($json_arr); //convert to associative array
-$data = new Users();
-$output = $data->getUser();
-echo json_encode($output);
+    echo json_encode($output);
+
+} else {
+    header( 'HTTP/1.0 403 Forbidden', TRUE, 403 );
+    exit();
+}
+
 ?>

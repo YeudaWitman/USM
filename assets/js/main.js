@@ -1,17 +1,14 @@
 $(document).ready(() => {
     
     function initApp() {
-        // setInterval(requestData, 3000);
-        requestData();
+        setInterval(requestData, 3000);
+        // requestData();
     }
     function requestData() {
         $.ajax({
             type: "GET",
             url: "http://localhost/UMS01/users",
             success: function (data, textStatus, request) {
-                console.log(textStatus);
-                console.log(request.getResponseHeader('some_header'));
-                console.log(JSON.parse(data));
                 renderConnectionTable(JSON.parse(data));
                 renderTimer()
             },
