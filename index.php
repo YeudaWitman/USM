@@ -10,7 +10,7 @@ if(isset($_SESSION['user'])) {
             include_once "./table.php";
             break;
         case "users":
-            include_once "./users.php";
+            include_once "./requestUsersData.php";
             break;
         case "signin":
             include_once "./signin.php";
@@ -24,7 +24,8 @@ if(isset($_SESSION['user'])) {
     }
 
 } else {
-    header("Location: signin.php");
+    header( 'HTTP/1.0 403 Forbidden', TRUE, 403 );
+    header( "Location: signin.php" );
     exit();
 }
 

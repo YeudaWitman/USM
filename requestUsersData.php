@@ -1,5 +1,5 @@
 <?php
-include_once('./model/data.php');
+include_once('./model/Users.php');
 
 $data = file_get_contents('./model/users.json');
 
@@ -8,6 +8,6 @@ $json_arr = json_decode($data, true);
 
 // var_dump($json_arr); //convert to associative array
 $data = new Users();
-$vvv = $data->getData();
-echo json_encode($vvv);
+$output = $data->getUser();
+echo json_encode($output);
 ?>

@@ -7,7 +7,7 @@
             header("Location: ../signup?error=emptyfields");
             exit();
         } else {
-            include_once '../model/data.php';
+            include_once '../model/Users.php';
             $userData = new Users();
             $checkedUser = $userData->getUserByEmail($email);
             if($checkedUser == false) {

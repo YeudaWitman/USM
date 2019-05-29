@@ -14,7 +14,7 @@ class Users
         $this->usernames = array();
     }
 
-    public function getData() {
+    public function getUser() {
         foreach ($this->json_arr as $key => $value) {
             array_push($this->usernames, $value);
         }

@@ -13,23 +13,19 @@
             exit();
         }
         else {
-            include_once '../model/data.php';
+            include_once '../model/Users.php';
             $userData = new Users();
-            $data = file_get_contents('../model/users.json');
-            $json_arr = json_decode($data, true);
-
-            foreach ($json_arr as $key => $value) {
-                if(in_array($email, $value)) {
-                    echo $email;
-                //header("Location: ../signup?error=emailexist&email=".$email);
-                //exit();
-                }
+            $checkedUser = $userData->getUserByEmail($email);
+            if($checkedUser !== false) {
+                header("Location: ../signup.php?error=emailtaken");
+                exit();
+            } else {
+                $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+                $newUser = array("email" => $email, "password" => $hashedPassword);
+                $userData->addUser($newUser);
+                header("Location: ../signin.php");
+                exit();
             }
-            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-            $newUser = array("email" => $email, "password" => $hashedPassword);
-            $userData->addUser($newUser);
-            header("Location: ../signin.php");
-            exit();
         }
     } else {
         header("Location: ../signup.php");
