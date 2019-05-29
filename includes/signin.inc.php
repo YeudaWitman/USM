@@ -4,7 +4,7 @@
         $password = $_POST['password'];
 
         if(empty($email) || empty($password)) {
-            header("Location: ../signup?error=emptyfields");
+            header("Location: ../signin?error=emptyfields");
             exit();
         } else {
             include_once '../model/Users.php';
@@ -15,7 +15,7 @@
                 exit();
             } else {
                 if(password_verify($password, $checkedUser['password']) == false) {
-                    header("Location: ../signin?error=incorrectpwd");
+                    header("Location: ../signin?error=incorrect");
                     exit();
                 } else {
                     session_start();

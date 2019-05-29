@@ -8,9 +8,11 @@ $(document).ready(() => {
         $.ajax({
             type: "GET",
             url: "http://localhost/UMS01/users",
-            success: function (response) {
-                console.log(JSON.parse(response))
-                renderConnectionTable(JSON.parse(response));
+            success: function (data, textStatus, request) {
+                console.log(textStatus);
+                console.log(request.getResponseHeader('some_header'));
+                console.log(JSON.parse(data));
+                renderConnectionTable(JSON.parse(data));
                 renderTimer()
             },
             error: function (xhr, status, err) {

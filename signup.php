@@ -15,6 +15,14 @@
   </head>
   <body class="text-center">
     <form class="form-signin" action="includes/signup.inc.php" method="POST">
+      <?php
+        if(isset($_GET['error'])) {
+          include_once 'includes/errors.php';
+          $errorHandle = new Errors();
+          $errorMsg = $errorHandle->getErrorMsg($_GET['error']);
+          echo '<div class="alert alert-danger" role="alert">'.$errorMsg.'</div>';
+        }
+      ?>
       <img class="mb-4" src="assets/images/bootstrap-solid.svg" alt="" width="72" height="72">
       <h1 class="h3 mb-3 font-weight-normal">SIGN UP</h1>
       <label for="inputEmail" class="sr-only">Email address</label>

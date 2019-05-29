@@ -35,7 +35,6 @@ class Users
     }
 
     public function getUserByEmail($email) {
-        // echo $email;
         $filteredUser;
         foreach ($this->json_arr as $value) {
             if( $value['email'] === $email ) {
