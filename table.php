@@ -15,9 +15,10 @@
 <div class="container">
   <nav class="navbar navbar-dark bg-dark">
     <div class="navbar-brand"><span class="alert alert-light">Last Update: <span id="timer" class="badge badge-light"></span></span>
-      <button type="button" class="btn btn-secondary" title="Update Now">
+      <!-- <button type="button" class="btn btn-secondary" title="Update Now">
       <i class="fas fa-sync-alt"></i>
-      </button>
+      </button> -->
+      Welcome <?php echo $_SESSION['user'];?>
     </div>
     <form action="logout.php" method="POST">
       <button type="submit" name="logout" class="btn btn-secondary">Log out</button>

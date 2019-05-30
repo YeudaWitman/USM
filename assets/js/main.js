@@ -1,8 +1,8 @@
 $(document).ready(() => {
     
     function initApp() {
+        requestData();
         setInterval(requestData, 3000);
-        // requestData();
     }
     function requestData() {
         $.ajax({
