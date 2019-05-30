@@ -29,6 +29,7 @@
       <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
       <label for="inputPassword" class="sr-only">Password</label>
       <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+      <input type="password" name="passwordRpt" id="inputPasswordRpt" class="form-control" placeholder="Confirm password" required>
       <button class="btn btn-lg btn-primary btn-block" name="submit" type="submit">Signup</button>
       <div>Already registered? <a href="./signin.php">sign in</a></div>
       <p class="mt-5 mb-3 text-muted">&copy; 2019</p>

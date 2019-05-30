@@ -7,10 +7,11 @@ class Errors {
         'nouser' => 'User not found',
         'incorrect' => 'Incorrect mail or password',
         'emailtaken' => 'Email is taken',
-        'invalidemail' => 'Invalid email address'
+        'invalidemail' => 'Invalid email address',
+        'nomatchpwd' => 'Passwords dont match'
     );
     
-    function getErrorMsg($index) {
+    function getErrorMsg( $index ) {
         return $this->errorsArr[$index];
     }
 }

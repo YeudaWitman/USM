@@ -1,11 +1,11 @@
 <?php
 session_start();
-$uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+$uri = parse_url( $_SERVER['REQUEST_URI'], PHP_URL_PATH );
 $uri = explode( '/', $uri );
 
 switch ( $uri['2'] ) {
     case "":
-        if ( isset($_SESSION['user']) ) {
+        if ( isset( $_SESSION['user'] ) ) {
             include_once "./table.php";
             break;
         } else {
@@ -14,7 +14,7 @@ switch ( $uri['2'] ) {
         }
 
     case "users":
-        if ( isset($_SESSION['user']) ) {
+        if ( isset( $_SESSION['user'] ) ) {
             include_once "./requestUsersData.php";
             break;
         } else {
