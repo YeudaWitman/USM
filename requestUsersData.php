@@ -1,6 +1,6 @@
 <?php
 
-if ( isset($_SESSION['user']) ) {
+if ( isset( $_SESSION['user'] ) ) {
 
     include_once('./model/Users.php');
     $data = new Users();
