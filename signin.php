@@ -16,11 +16,15 @@
   <body class="text-center">
     <form class="form-signin" action="includes/signin.inc.php" method="POST">
       <?php
-        if(isset($_GET['error'])) {
+        // define('BOAT', 'valueOfDefin');
+        // echo BOAT;
+        if ( isset( $_GET['error'] ) ) {
           include_once 'includes/errors.php';
           $errorHandle = new Errors();
-          $errorMsg = $errorHandle->getErrorMsg($_GET['error']);
-          echo '<div class="alert alert-danger" role="alert">'.$errorMsg.'</div>';
+          $errorMsg = $errorHandle->getErrorMsg( $_GET['error'] );
+          if ( $errorMsg != null ) {
+            echo '<div class="alert alert-danger" role="alert">'.$errorMsg.'</div>';
+          }          
         }
       ?>
       <img class="mb-4" src="assets/images/bootstrap-solid.svg" alt="" width="72" height="72">

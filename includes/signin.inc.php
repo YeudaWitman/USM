@@ -11,17 +11,19 @@
             include_once '../model/Users.php';
             $userData = new Users();
             $checkedUser = $userData->getUserByEmail( $email );
+            $checkedEmail = $checkedUser['password'];
             if ( $checkedUser == false ) {
                 header( "Location: $signinURL?error=nouser" );
                 exit();
             } else {
-                if ( password_verify( $password, $checkedUser['password'] ) == false ) {
+                if ( password_verify( $password, $checkedEmail ) == false ) {
                     header( "Location: $signinURL?error=incorrect" );
                     exit();
                 } else {
                     session_start();
-                    $userData->setLoggedin( $checkedUser );
                     $_SESSION['user'] = $email;
+                    $_SESSION['start'] = date( "H:i:s" );
+                    $userData->setLoggedin( $checkedUser );
                     header( "Location: ../" );
                     exit();
                 }

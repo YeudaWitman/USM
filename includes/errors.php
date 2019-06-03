@@ -12,7 +12,13 @@ class Errors {
     );
     
     function getErrorMsg( $index ) {
-        return $this->errorsArr[$index];
+        if ( array_key_exists( $index, $this->errorsArr ) )  {
+            return $this->errorsArr[$index];
+        }
+        else {
+            return null;
+        }
+        
     }
 }
 

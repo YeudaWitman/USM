@@ -14,7 +14,7 @@ class Users
         $this->usernames = array();
     }
 
-    public function getUser() {
+    public function getUsers() {
         foreach ( $this->json_arr as $key => $value ) {
             array_push( $this->usernames, $value );
         }
@@ -28,7 +28,7 @@ class Users
             "password" => $userData["password"], 
             "connectionTime" => $now, 
             "connected" => false,
-            "IP" => ''
+            "IP" => $_SERVER['REMOTE_ADDR']
         );
         array_push( $this->json_arr,  $user );
         file_put_contents( $this->dataURL, json_encode( $this->json_arr ) );

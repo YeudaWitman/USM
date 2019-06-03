@@ -2,15 +2,33 @@ $(document).ready(() => {
     
     function initApp() {
         requestData();
-        setInterval(requestData, 3000);
+        // setInterval(requestData, 3000);
     }
     function requestData() {
         $.ajax({
             type: "GET",
             url: "http://localhost/UMS01/users",
+            beforeSend: function(request) {
+                request.setRequestHeader("Authority", 'authorizationToken');
+              },
+            headers: {
+                'Authorization': 'Basic ',
+                'Order-Num': 123
+            },
             success: function (data, textStatus, request) {
-                renderConnectionTable(JSON.parse(data));
-                renderTimer()
+                // console.log(textStatus, request);
+                console.log(data);
+                // console.log(JSON.parse(data));
+                renderTimer();
+                try {
+                    let parsedData = JSON.parse(data);
+                    console.log(parsedData);
+                    renderConnectionTable(parsedData.data);
+                } catch (err) {
+                    console.log(err);
+                    renderErrorTable('ERROR:', 'No data received');
+                    return;
+                }
             },
             error: function (xhr, status, err) {
                 console.error(xhr, status, err);
@@ -49,6 +67,11 @@ $(document).ready(() => {
                 $('#disconnectedTable').append(userData);
             }
         });
+    }
+
+    function renderErrorTable(errMsgHeader, errMsgContent) {
+        let errMsg = `<div class="alert alert-danger" id="alertError" role="alert"><b>${errMsgHeader}</b> ${errMsgContent}</div>`
+        $('#tableContainer').empty().append(errMsg);
     }
 
     initApp();

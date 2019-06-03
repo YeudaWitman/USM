@@ -1,12 +1,16 @@
 <?php
+
+date_default_timezone_set( "Asia/Tel_Aviv" );
+
 session_start();
+
 $uri = parse_url( $_SERVER['REQUEST_URI'], PHP_URL_PATH );
 $uri = explode( '/', $uri );
 
 switch ( $uri['2'] ) {
     case "":
         if ( isset( $_SESSION['user'] ) ) {
-            include_once "./table.php";
+            include_once __dir__."/table.php";
             break;
         } else {
             header( "Location: signin.php" );
