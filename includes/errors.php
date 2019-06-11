@@ -2,7 +2,7 @@
 
 class Errors {
 
-    private $errorsArr = array(
+    private static $errorsArr = array(
         'emptyfields' => 'Empty fields',
         'nouser' => 'User not found',
         'incorrect' => 'Incorrect mail or password',
@@ -11,13 +11,15 @@ class Errors {
         'nomatchpwd' => 'Passwords dont match'
     );
     
-    function getErrorMsg( $index ) {
-        if ( array_key_exists( $index, $this->errorsArr ) )  {
-            return $this->errorsArr[$index];
-        }
-        else {
-            return null;
-        }
+    public static function getErrorMsg( $index ) {
+        return array_key_exists( $index, self::$errorsArr ) ? self::$errorsArr[$index] : null;
+        
+        // if ( array_key_exists( $index, self::$errorsArr ) )  {
+        //     return self::$errorsArr[$index];
+        // }
+        // else {
+        //     return null;
+        // }
         
     }
 }

@@ -20,8 +20,7 @@
         // echo BOAT;
         if ( isset( $_GET['error'] ) ) {
           include_once 'includes/errors.php';
-          $errorHandle = new Errors();
-          $errorMsg = $errorHandle->getErrorMsg( $_GET['error'] );
+          $errorMsg = errors::getErrorMsg( $_GET['error'] );
           if ( $errorMsg != null ) {
             echo '<div class="alert alert-danger" role="alert">'.$errorMsg.'</div>';
           }          

@@ -1,36 +1,31 @@
 $(document).ready(() => {
     
+    let intervalAmount = 3000;
+
     function initApp() {
         requestData();
-        // setInterval(requestData, 3000);
+        setInterval(requestData, intervalAmount);
     }
     function requestData() {
         $.ajax({
             type: "GET",
             url: "http://localhost/UMS01/users",
-            beforeSend: function(request) {
-                request.setRequestHeader("Authority", 'authorizationToken');
-              },
-            headers: {
-                'Authorization': 'Basic ',
-                'Order-Num': 123
-            },
-            success: function (data, textStatus, request) {
+            success: (data, textStatus, request) => {
                 // console.log(textStatus, request);
-                console.log(data);
+                // console.log(data);
                 // console.log(JSON.parse(data));
                 renderTimer();
                 try {
                     let parsedData = JSON.parse(data);
-                    console.log(parsedData);
-                    renderConnectionTable(parsedData.data);
+                    // console.log(parsedData);
+                    renderConnectionTable(parsedData);
                 } catch (err) {
                     console.log(err);
                     renderErrorTable('ERROR:', 'No data received');
-                    return;
+                    // initApp(); //if failed to load data run again
                 }
             },
-            error: function (xhr, status, err) {
+            error: (xhr, status, err) => {
                 console.error(xhr, status, err);
             }
         })

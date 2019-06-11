@@ -58,8 +58,11 @@ class Users
     public function setLoggedOut( $userMail ) {
         $user = $this->getUserByEmail( $userMail );
         $userIndex = array_search( $user, $this->json_arr );
-        $this->json_arr[$userIndex]["connected"] = false;
-        file_put_contents( $this->dataURL, json_encode( $this->json_arr ) );
+        if ($userIndex) { //problem: return false if logout after incorrect login
+            $this->json_arr[$userIndex]["connected"] = false;
+            file_put_contents( $this->dataURL, json_encode( $this->json_arr ) );
+        }
+        return;
     }
 
 }

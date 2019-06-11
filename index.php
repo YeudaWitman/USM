@@ -4,6 +4,11 @@ date_default_timezone_set( "Asia/Tel_Aviv" );
 
 session_start();
 
+//handle the first request
+if ( !isset($_SESSION['lastReq']) ) {
+    $_SESSION['lastReq'] = date( "H:i:s" , $_SERVER['REQUEST_TIME'] );
+}
+
 $uri = parse_url( $_SERVER['REQUEST_URI'], PHP_URL_PATH );
 $uri = explode( '/', $uri );
 
