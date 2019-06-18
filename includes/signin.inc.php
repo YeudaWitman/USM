@@ -22,7 +22,6 @@
                 } else {
                     session_start();
                     $_SESSION['user'] = $email;
-                    $_SESSION['start'] = date( "H:i:s" );
                     $userData->setLoggedin( $checkedUser );
                     header( "Location: ../" );
                     exit();

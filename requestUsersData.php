@@ -2,14 +2,15 @@
 
 if ( isset( $_SESSION['user'] ) ) {
 
-    $currentRequest = date( "H:i:s" , $_SERVER['REQUEST_TIME'] );
-    $lastRequest = date( $_SESSION['lastReq']);
+    // $currentRequest = date( "H:i:s" , $_SERVER['REQUEST_TIME'] );
+    // $lastRequest = date( $_SESSION['lastReq']);
 
-    if ( strtotime($currentRequest) - strtotime($lastRequest) > 10 ) {
-        require_once './logout.php';
-        header( "Location: ./logout.php" );
-        exit();
-    } 
+    // if ( strtotime($currentRequest) - strtotime($lastRequest) >= 10 ) {
+    //     session_destroy();
+    //     session_unset();
+    //     header( "Location: ./logout.php" );
+    //     exit();
+    // } 
 
         include_once './model/Users.php';
         $data = new Users();
