@@ -11,18 +11,13 @@ $(document).ready(() => {
             type: "GET",
             url: "http://localhost/UMS01/users",
             success: (data, textStatus, request) => {
-                // console.log(textStatus, request);
-                // console.log(data);
-                // console.log(JSON.parse(data));
                 renderTimer();
                 try {
                     let parsedData = JSON.parse(data);
-                    // console.log(parsedData);
                     renderConnectionTable(parsedData);
                 } catch (err) {
                     console.log(err);
                     renderErrorTable('ERROR:', 'No data received');
-                    // initApp(); //if failed to load data run again
                 }
             },
             error: (xhr, status, err) => {
